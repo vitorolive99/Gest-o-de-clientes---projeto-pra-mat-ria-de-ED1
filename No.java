@@ -5,5 +5,5 @@ public class No {
     public double divida;
     public No dir;
     public No esq;
-    // luis gabriel costa
+    
 }
