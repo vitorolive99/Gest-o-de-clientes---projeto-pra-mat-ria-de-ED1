@@ -5,9 +5,12 @@ class Tree {
     root = null;
   } // inicializa arvore
 
-  public void inserir(long v) {
+  public void inserir(int id, String nome, String cpf) {
     No novo = new No(); // cria um novo Nó
-    novo.item = v; // atribui o valor recebido ao item de dados do Nó
+    novo.numID = id; // atribui o valor recebido ao item de dados do Nó
+    novo.nome = nome;
+    novo.cpf = cpf;
+    novo.divida = 0;
     novo.dir = null;
     novo.esq = null;
 
@@ -18,7 +21,7 @@ class Tree {
       No anterior;
       while (true) {
         anterior = atual;
-        if (v <= atual.item) { // ir para esquerda
+        if (id <= atual.numID) { // ir para esquerda
           atual = atual.esq;
           if (atual == null) {
             anterior.esq = novo;
