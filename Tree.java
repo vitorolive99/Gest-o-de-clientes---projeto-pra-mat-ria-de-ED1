@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Tree {
   private No root; // raiz
 
@@ -12,6 +14,7 @@ class Tree {
     novo.divida = 0;
     novo.dir = null;
     novo.esq = null;
+
 
     if (root == null)
       root = novo;
@@ -172,5 +175,6 @@ class Tree {
       inOrder(atual.dir);
     }
   }
+
 
 }
