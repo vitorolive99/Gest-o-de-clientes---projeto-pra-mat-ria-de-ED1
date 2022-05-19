@@ -5,14 +5,13 @@ class ArvoreBinariaApp {
   public static void main(String[] args) {
     Scanner le = new Scanner(System.in);
     Tree arv = new Tree();
-    int opcao, id;
+    int opcao;
 	String nome, cpf;
-    long x;
     System.out.print("\n Programa Arvore binaria de long");
     do {
         System.out.print("\n***********************************");
         System.out.print("\nEntre com a opcao:");
-		System.out.print("\n ----1: Inserir");
+		System.out.print("\n ----1: Cadastrar novo cliente");
 		System.out.print("\n ----2: Excluir");
 		System.out.print("\n ----3: Pesquisar");
 		System.out.print("\n ----4: Exibir");
@@ -22,33 +21,35 @@ class ArvoreBinariaApp {
 		opcao = le.nextInt();
 		switch(opcao) {
 			case 1: {
-				System.out.print("\n Informe id do cliete -> ");
-				id = le.nextInt();
 				System.out.print("\n Informe nome do cliete -> ");
 				nome = le.nextLine();
 				System.out.print("\n Informe cpf do cliete -> ");
 				cpf = le.nextLine();
-				arv.inserir(id, nome, cpf);
+				arv.inserir(nome, cpf);
 				break;
 			}
 			case 2: {
-				System.out.print("\n Informe o valor (long) -> ");
-				x = le.nextLong();
-				if ( !arv.remover(x) )
+				System.out.print("\n Informe nome do cliete -> ");
+				nome = le.nextLine();
+				System.out.print("\n Informe cpf do cliete -> ");
+				cpf = le.nextLine();
+				if ( !arv.remover(cpf, nome) )
 							System.out.print("\n Valor nao encontrado!");;
 				break;
 			}
 			case 3: {
-				System.out.print("\n Informe o valor (long) -> ");
-						x = le.nextLong();
-					if( arv.buscar(x) != null )
+				System.out.print("\n Informe nome do cliete -> ");
+				nome = le.nextLine();
+				System.out.print("\n Informe cpf do cliete -> ");
+				cpf = le.nextLine();
+					if( arv.buscar(cpf, nome) != null )
 					System.out.print("\n Valor Encontrado");
 				else 
 					System.out.print("\n Valor nao encontrado!");
 				break;
 			}	 
 			case 4: {
-				arv.caminhar();
+				
 				break; 
 			}
 			} // fim switch

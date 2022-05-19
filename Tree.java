@@ -5,9 +5,8 @@ class Tree {
     root = null;
   } // inicializa arvore
 
-  public void inserir(int id, String nome, String cpf) {
+  public void inserir(String nome, String cpf) {
     No novo = new No(); // cria um novo Nó
-    novo.numID = id; // atribui o valor recebido ao item de dados do Nó
     novo.nome = nome;
     novo.cpf = cpf;
     novo.divida = 0;
@@ -21,7 +20,7 @@ class Tree {
       No anterior;
       while (true) {
         anterior = atual;
-        if (id <= atual.numID) { // ir para esquerda
+        if (nome.compareTo(novo.nome) <= 0) { // ir para esquerda
           atual = atual.esq;
           if (atual == null) {
             anterior.esq = novo;
@@ -40,12 +39,12 @@ class Tree {
 
   }
 
-  public No buscar(long chave) {
+  public No buscar(String cpf, String nome) { //busca o nó através do cpf e do nome
     if (root == null)
       return null; // se arvore vazia
     No atual = root; // começa a procurar desde raiz
-    while (atual.item != chave) { // enquanto nao encontrou
-      if (chave < atual.item)
+    while (!atual.nome.equals(nome) && !atual.cpf.equals(cpf)) { // enquanto nao encontrou
+      if (nome.compareTo(atual.nome) < 0)
         atual = atual.esq; // caminha para esquerda
       else
         atual = atual.dir; // caminha para direita
@@ -55,7 +54,7 @@ class Tree {
     return atual; // terminou o laço while e chegou aqui é pq encontrou item
   }
 
-  public boolean remover(long v) {
+  public boolean remover(String cpf, String nome) {
     if (root == null)
       return false; // se arvore vazia
 
@@ -64,9 +63,9 @@ class Tree {
     boolean filho_esq = true;
 
     // ****** Buscando o valor **********
-    while (atual.item != v) { // enquanto nao encontrou
+    while (!atual.nome.equals(nome) && !atual.cpf.equals(cpf)) { // enquanto nao encontrou
       pai = atual;
-      if (v < atual.item) { // caminha para esquerda
+      if (nome.compareTo(atual.nome) < 0) { // caminha para esquerda
         atual = atual.esq;
         filho_esq = true; // é filho a esquerda? sim
       } else { // caminha para direita
@@ -164,90 +163,14 @@ class Tree {
     return sucessor;
   }
 
-  public void caminhar() {
-    System.out.print("\n Exibindo em ordem: ");
-    inOrder(root);
-    System.out.print("\n Exibindo em pos-ordem: ");
-    posOrder(root);
-    System.out.print("\n Exibindo em pre-ordem: ");
-    preOrder(root);
-    System.out.print("\n Altura da arvore: " + altura(root));
-    System.out.print("\n Quantidade de folhas: " + folhas(root));
-    System.out.print("\n Quantidade de Nós: " + contarNos(root));
-    if (root != null) { // se arvore nao esta vazia
-      System.out.print("\n Valor minimo: " + min().item);
-      System.out.println("\n Valor maximo: " + max().item);
-    }
-  }
-
   public void inOrder(No atual) {
     if (atual != null) {
       inOrder(atual.esq);
-      System.out.print(atual.item + " ");
+      System.out.println(atual.nome);
+      System.out.println(atual.cpf);
+      System.out.println(atual.divida);
       inOrder(atual.dir);
     }
-  }
-
-  public void preOrder(No atual) {
-    if (atual != null) {
-      System.out.print(atual.item + " ");
-      preOrder(atual.esq);
-      preOrder(atual.dir);
-    }
-  }
-
-  public void posOrder(No atual) {
-    if (atual != null) {
-      posOrder(atual.esq);
-      posOrder(atual.dir);
-      System.out.print(atual.item + " ");
-    }
-  }
-
-  public int altura(No atual) {
-    if (atual == null || (atual.esq == null && atual.dir == null))
-      return 0;
-    else {
-      if (altura(atual.esq) > altura(atual.dir))
-        return (1 + altura(atual.esq));
-      else
-        return (1 + altura(atual.dir));
-    }
-  }
-
-  public int folhas(No atual) {
-    if (atual == null)
-      return 0;
-    if (atual.esq == null && atual.dir == null)
-      return 1;
-    return folhas(atual.esq) + folhas(atual.dir);
-  }
-
-  public int contarNos(No atual) {
-    if (atual == null)
-      return 0;
-    else
-      return (1 + contarNos(atual.esq) + contarNos(atual.dir));
-  }
-
-  public No min() {
-    No atual = root;
-    No anterior = null;
-    while (atual != null) {
-      anterior = atual;
-      atual = atual.esq;
-    }
-    return anterior;
-  }
-
-  public No max() {
-    No atual = root;
-    No anterior = null;
-    while (atual != null) {
-      anterior = atual;
-      atual = atual.dir;
-    }
-    return anterior;
   }
 
 }
