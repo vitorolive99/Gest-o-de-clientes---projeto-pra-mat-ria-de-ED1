@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 class Tree {
   private No root; // raiz
 
@@ -166,15 +164,20 @@ class Tree {
     return sucessor;
   }
 
+  public void caminhar(){
+    System.out.println("Ficha Geral de Clientes");
+    inOrder(root);
+  }
+
   public void inOrder(No atual) {
     if (atual != null) {
       inOrder(atual.esq);
-      System.out.println(atual.nome);
-      System.out.println(atual.cpf);
-      System.out.println(atual.divida);
+      System.out.println("************************");
+      System.out.println("* NOME "+ atual.nome);
+      System.out.println("* CPF "+ atual.cpf);
+      System.out.println("* R$ "+ atual.divida);
+      System.out.println("************************");
       inOrder(atual.dir);
     }
   }
-
-
 }
