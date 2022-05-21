@@ -44,14 +44,18 @@ class Tree {
     if (root == null)
       return null; // se arvore vazia
     No atual = root; // começa a procurar desde raiz
-    while (!atual.nome.equals(nome) && !atual.cpf.equals(cpf)) { // enquanto nao encontrou
+    while (!atual.cpf.equals(cpf)) { // enquanto nao encontrou
       if (nome.compareTo(atual.nome) < 0)
         atual = atual.esq; // caminha para esquerda
       else
         atual = atual.dir; // caminha para direita
       if (atual == null)
         return null; // encontrou uma folha -> sai
-    } // fim laço while
+    }// fim laço while
+    
+    if(!atual.cpf.equals(cpf))
+      return null;
+
     return atual; // terminou o laço while e chegou aqui é pq encontrou item
   }
 
@@ -64,7 +68,7 @@ class Tree {
     boolean filho_esq = true;
 
     // ****** Buscando o valor **********
-    while (!atual.nome.equals(nome) && !atual.cpf.equals(cpf)) { // enquanto nao encontrou
+    while (!atual.cpf.equals(cpf)) { // enquanto nao encontrou
       pai = atual;
       if (nome.compareTo(atual.nome) < 0) { // caminha para esquerda
         atual = atual.esq;
