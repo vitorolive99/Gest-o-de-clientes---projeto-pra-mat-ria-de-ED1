@@ -14,7 +14,7 @@ class ArvoreBinariaApp {
 			System.out.println("Entre com a opcao:");
 			System.out.println(" ----1: Cadastrar novo cliente");
 			System.out.println(" ----2: Exibir");
-			System.out.println(" ----3: excluir ficha"); // pagar divida ou excluir
+			System.out.println(" ----3: Excluir ficha"); // pagar divida ou excluir
 			System.out.println(" ----4: Atualizar Ficha");
 			System.out.println(" ----5: Sair do programa");
 			System.out.println("***********************************");
@@ -22,9 +22,9 @@ class ArvoreBinariaApp {
 			opcao = le.nextInt();
 			switch(opcao) {
 				case 1: {
-					System.out.print(" Informe nome do cliete -> ");
+					System.out.print(" Informe nome do cliente -> ");
 					nome = le.next();
-					System.out.print(" Informe cpf do cliete -> ");
+					System.out.print(" Informe cpf do cliente -> ");
 					cpf = le.next();
 					arv.inserir(nome, cpf);
 					System.out.println("Cliente cadastrado com sucesso.");
@@ -38,9 +38,9 @@ class ArvoreBinariaApp {
 				}
 				case 3: {
 					// pega o dados do cliente
-					System.out.print(" Informe nome do cliete -> ");
+					System.out.print(" Informe nome do cliente -> ");
 					nome = le.next();
-					System.out.print(" Informe cpf do cliete -> ");
+					System.out.print(" Informe cpf do cliente -> ");
 					cpf = le.next();
 					// pega o no da ficha
 					ficha_pessoa = arv.buscar(cpf, nome);
@@ -50,7 +50,7 @@ class ArvoreBinariaApp {
 								arv.remover(ficha_pessoa.cpf, ficha_pessoa.nome);
 								System.out.println("Cliente excluido com sucesso.");
 							}else{
-								System.out.println("Nao pode pois ainda deve na casa");
+								System.out.println("Nao pode pois ainda tem débito na casa.");
 								System.out.println("Valor da divida: R$ "+ficha_pessoa.divida);
 							}
 						// caso os dados inseridos estejam errados
@@ -62,9 +62,9 @@ class ArvoreBinariaApp {
 				}	 
 				case 4: {
 					// pega o dados do cliente
-					System.out.print(" Informe nome do cliete -> ");
+					System.out.print(" Informe nome do cliente -> ");
 					nome = le.next();
-					System.out.print(" Informe cpf do cliete -> ");
+					System.out.print(" Informe cpf do cliente -> ");
 					cpf = le.next();
 					ficha_pessoa = arv.buscar(cpf, nome);
 					
@@ -84,14 +84,14 @@ class ArvoreBinariaApp {
 								valor = le.nextFloat();
 								ficha_pessoa.divida += valor;
 								System.out.println("Compra efetuada com sucesso!");
-								System.out.println("Débito atual: " + ficha_pessoa.divida);
+								System.out.println("Débito atual: R$" + ficha_pessoa.divida);
 							}
 							if(opcao == 2){
 								System.out.println("Qual o valor de pagamento ? "); 
 								valor = le.nextFloat();
 								ficha_pessoa.divida -= valor;
 								System.out.println("Pagamento efetuado com sucesso!");
-								System.out.println("Débito atual: " + ficha_pessoa.divida);
+								System.out.println("Débito atual: R$" + ficha_pessoa.divida);
 							}
 
 						}while(opcao != 0);
@@ -101,6 +101,9 @@ class ArvoreBinariaApp {
 
 					break; 
 				}
+				case 5:
+					System.out.println("Encerrando...");
+					break;
 				default:{
 					System.out.println("Opcao invalida");
 				}
